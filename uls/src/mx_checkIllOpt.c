@@ -7,5 +7,5 @@ void mx_checkIllOpt(char ch) {
     write(2, &ch, 1);
     write(2, "\n", 1);
 
-    usage();
+    mx_getUsageError();
 }

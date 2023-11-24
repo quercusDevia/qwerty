@@ -67,11 +67,11 @@ static int files_count(t_manager **dir, t_flags *flags) {
 // and prints them, or calls the print_menu function (print_menu).
 static void mx_errCheckAndOut(t_manager** directory, t_flags* flags, t_obj_counter *counter, char** argv) {
     if ((*directory)->open != NULL) {
-        print_menu(&(*directory)->open, flags, argv);
+        mx_menuOut(&(*directory)->open, flags, argv);
 
         if (flags->R == 1) {
             flags->is_files = 1;
-            clean_files(&(*directory)->open, flags);
+            mx_remFiles(&(*directory)->open, flags);
 
             if ((*directory)->open) {
                 mx_printchar('\n');
@@ -145,7 +145,7 @@ void mx_dirsPrintt(t_manager*** directory, t_flags* flags, t_obj_counter* counte
                     if (reader->d_name[0] != '.'
                         || mx_isAFlag(reader->d_name, flags)
                         || mx_isaFlag(reader->d_name, flags)) {
-                        (*directory)[i]->open[count++] = add_named_node(reader->d_name, (*directory)[i]->path);
+                        (*directory)[i]->open[count++] = mx_addNodeWithName(reader->d_name, (*directory)[i]->path);
                     }
                 }
 

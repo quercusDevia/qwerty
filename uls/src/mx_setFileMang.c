@@ -8,7 +8,7 @@ t_manager **mx_setFileMang(char **nameFiles, int count) {
     t_manager **all_files = (t_manager **)malloc(count * sizeof(t_manager *));
 
     while (nameFiles[i]) {
-        all_files[i] = add_node(nameFiles[i]);
+        all_files[i] = mx_nodeAddFile(nameFiles[i]);
         i++;
     }
 

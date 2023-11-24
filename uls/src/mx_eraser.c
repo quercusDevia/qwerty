@@ -76,7 +76,7 @@ void mx_remFiles(t_manager ***toDelete, t_flags *flags) {
         if ((*toDelete)[i]->error == NULL) {
             if (S_ISDIR((*toDelete)[i]->statistic.st_mode) && mx_strcmp((*toDelete)[i]->name, "..") != 0 && mx_strcmp((*toDelete)[i]->name, ".") != 0) {
                 num_dir++;
-                directories[num_dir] = add_file_node((*toDelete)[i]);
+                directories[num_dir] = mx_addManStruct((*toDelete)[i]);
                 directories[num_dir] = NULL;
             }
         }
