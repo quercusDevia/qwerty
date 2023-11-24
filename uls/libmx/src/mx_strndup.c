@@ -1,12 +1,13 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-char* mx_strndup(const char* s1, size_t n) {
-    size_t len = mx_strlen(s1);
-    if (len > n) {
-        len = n;
+char *mx_strndup(const char *s1, size_t n){
+    size_t length = mx_strlen(s1);
+
+    if(length > n){
+        length = n;
     }
-    char* dup = mx_strnew(len);
-    mx_strncpy(dup, s1, len);
-    return dup;
-}
 
+    char* arr = mx_strnew(length);
+    mx_strncpy(arr, s1, n);
+    return arr;
+}

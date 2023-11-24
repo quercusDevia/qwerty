@@ -1,48 +1,36 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-char *mx_itoa(int number) {
-	int num_length = 0;
-	bool negative = false;
+char *mx_itoa(int number){
+    int sizenum = 0;
+    int ncop = number;
 
-	if (number < 0) {
-		number *= -1;
-		num_length = 1;
-		negative = true;
+    while (ncop != 0){
+        if (ncop < 0){
+	    sizenum++;
+	    ncop *= -1;
 	}
+	sizenum ++;
+	ncop /= 10;
+    }
+    if (number == 0){
+        sizenum = 1;
+    }
+    char *a = mx_strnew(sizenum);
 
-	int input = number;
+    if (number == 0){
+        a[0] = 48;
+    }
 
-	while (input) {
-		input /= 10;
-		num_length++;
+    for (int i = sizenum; number != 0; i--){
+        if (number < 0){
+	    a[0] = 45;
+	    number *= -1;
 	}
-
-	input = number;
-	int num_len_copy = num_length;
-	char* result = (char*)malloc((num_length + 1) * sizeof(char));
-
-	if (input == 0) {
-		return mx_strcpy(result, "0");
-	}
-	if (input == -2147483647 - 1) {
-		return mx_strcpy(result, "-2147483648");
-	}
-	else {
-		while (input) {
-			int temp = input % 10;
-
-			num_length--;
-			result[num_length] = temp + '0';
 	
-			input /= 10;
-		}
-	}
+	a[i - 1] = (number % 10) + 48;
+	number /= 10;
+    }
 
-	if (negative) {
-		result[--num_length] = '-';
-	}
-
-	result[num_len_copy] = '\0';
-	return result;
+    return a;
 }
 

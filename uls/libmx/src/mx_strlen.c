@@ -1,16 +1,13 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-int mx_strlen(const char* s) {
-    if (!s) {
-        return 0;
+int mx_strlen(const char *s){
+  
+    int a = 0;
+
+    for(int i = 0; s[i] != '\0'; i++){
+       a++;
     }
 
-    int length = 0;
-
-    while (s[length]) {
-        length++;
-    }
-
-    return length;
+    return a;
 }
 

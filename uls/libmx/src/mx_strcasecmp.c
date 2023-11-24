@@ -1,4 +1,4 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
 int mx_strcasecmp(char *s1, char *s2) {
     int i;

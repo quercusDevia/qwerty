@@ -1,11 +1,11 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-void mx_strdel(char **str) {
-	if (!str || !*str) {
-		return;
-	}
+void mx_strdel(char **str){
+    if (str != NULL){
+      free(*str);
 
-	free(*str);
-	*str = NULL;
+    }
+
+    str = NULL;
+
 }
-

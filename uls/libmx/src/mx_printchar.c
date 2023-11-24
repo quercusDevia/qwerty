@@ -1,6 +1,6 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-void mx_printchar(char c) {
-    write(1, &c, 1);
+void mx_printchar(char a){
+   write(1, &a, 1);
 }
 

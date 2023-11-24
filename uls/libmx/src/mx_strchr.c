@@ -1,17 +1,12 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-char* mx_strchr(const char* s, int c) {
-    int i = 0;
-
-    while (s[i] && s[i] != c) {
-        i++;
-    }
-
-    if (c == s[i]) {
-        return  (char*)s + i;
-    }
-    else {
-        return NULL;
-    }
+char *mx_strchr(const char *s, int c){
+     
+     for(const char *i = s; *i; i++){
+        if(i[0] == c){
+	  return (char *) i;
+	}
+     }
+    return 0;
 }
 

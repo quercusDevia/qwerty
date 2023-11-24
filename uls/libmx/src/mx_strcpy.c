@@ -1,13 +1,13 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-char *mx_strcpy(char *dst, const char *src) {
-    int i = 0;
-    
-    while (src[i]) {
+char *mx_strcpy(char *dst, const char *src){	
+    int i;
+
+    for (i = 0; src[i] != 0; i++){
         dst[i] = src[i];
-        i++;
     }
     dst[i] = '\0';
+
     return dst;
 }
 

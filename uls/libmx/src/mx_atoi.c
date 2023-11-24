@@ -1,16 +1,14 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-int mx_atoi(const char *str) {
-    int res = 0;
-    int sign = 1;
-    int i = 0;
-    while (mx_isspace(str[i]) == true) i++;
-    if (str[i] == '-' || str[i] == '+') {
-        sign = 1 - 2 * (str[i++] == '-');
+int mx_atoi(char* str){
+  int i = -1;
+    long result = 0;
+
+    while (str[++i]) {
+        if (mx_isdigit(str[i]))
+            result = result * 10 + str[i] - '0';
+        if (!mx_isdigit(str[i]))
+            return result;
     }
-    while (str[i] >= '0' && str[i] <= '9') {
-        res = 10 * res + (str[i++] - '0'); 
-    }
-    return res * sign;
+    return result;
 }
-

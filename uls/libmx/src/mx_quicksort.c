@@ -1,39 +1,48 @@
-#include "../inc/libmx.h"
+#include "libmx.h"
 
-int mx_quicksort(char** arr, int left, int right) {
-    if (!arr) {
+int mx_quicksort(char**arr, int left, int right){
+    if (!arr){
         return -1;
     }
-    int counter = 0;
+    if (left >= right){
+        return 0;
+    }
 
-    if (left < right) {
-        int k = left;
-        int j = right;
-        char* pivot = arr[(j + k) / 2];
+    char *mid = arr[(left + right) / 2];
+    int l, r;
+    int count = 0;
+    l = left;
+    r = right;
 
-        while (k <= j) {
-            while (mx_strlen(arr[k]) < mx_strlen(pivot)) {
-                k++;
-            }
-            while (mx_strlen(arr[j]) > mx_strlen(pivot)) {
-                j--;
-            }
-
-            if (k <= j) {
-                if (mx_strlen(arr[j]) != mx_strlen(arr[k])) {
-                    char* temp = arr[k];
-                    arr[k] = arr[j];
-                    arr[j] = temp;
-                    counter++;
-                }
-                j--;
-                k++;
-            }
+    while(l <= r){
+        while(mx_strlen(arr[l]) < mx_strlen(mid)){
+            l++;
         }
 
-        counter += mx_quicksort(arr, left, j);
-        counter += mx_quicksort(arr, k, right);
+        while(mx_strlen(arr[r]) > mx_strlen(mid)){
+            r--;
+        }
+
+	if(l <= r){
+            if(mx_strlen(arr[l]) != mx_strlen(arr[r])){
+		 char *p = arr[l];
+                 arr[l] = arr[r];
+                 arr[r] = p;
+                 count++;
+	    }
+	    l++;
+	    r--;
+	}
     }
-    return counter;
+
+    if (left < r){
+        count += mx_quicksort(arr, left, r);
+    }
+
+    if(right > l){
+        count += mx_quicksort(arr, l, right);
+    }
+
+    return count;
 }
 
